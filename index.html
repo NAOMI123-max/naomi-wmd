@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DarkCart - Home</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+    header {
+      background-color: #1e1e1e;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 {
+      color: #00bcd4;
+    }
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #00bcd4;
+    }
+
+    .hero {
+      background: linear-gradient(145deg, #0f0f0f, #232323);
+      padding: 80px 20px;
+      text-align: center;
+      color: #e0f7fa;
+    }
+    .hero h1 {
+      font-size: 56px;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 22px;
+      color: #b2ebf2;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      padding: 50px 40px;
+    }
+
+    .product-card {
+      background-color: #1e1e1e;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 12px rgba(0, 188, 212, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px rgba(0, 188, 212, 0.6);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .product-info h3 {
+      margin-bottom: 10px;
+    }
+
+    .product-info button {
+      background-color: #00bcd4;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .product-info button:hover {
+      background-color: #03a9f4;
+    }
+
+    footer {
+      background-color: #1a1a1a;
+      padding: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      color: #bbb;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 200px;
+      margin-bottom: 20px;
+    }
+
+    .footer-section h4 {
+      margin-bottom: 10px;
+      color: #00bcd4;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 8px;
+    }
+
+    .footer-section ul li a {
+      color: #bbb;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section ul li a:hover {
+      color: #ffffff;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid #333;
+      font-size: 14px;
+      color: #777;
+    }
+
+    @media screen and (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>DarkCart</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="cart.html">Cart</a>
+      <a href="feedback.html">Feedback</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1>Welcome to DarkCart</h1>
+    <p>Your one-stop shop for futuristic tech & stylish gadgets.</p>
+  </div>
+
+  <section class="products">
+    <div class="product-card" onclick="window.location.href='product-details.html'">
+      <img src="images/product1.jpg" alt="Wireless Headphones">
+      <div class="product-info">
+        <h3>Wireless Headphones</h3>
+        <button>View Product</button>
+      </div>
+    </div>
+    <div class="product-card" onclick="window.location.href='product-details.html'">
+      <img src="images/product2.jpg" alt="Smartwatch">
+      <div class="product-info">
+        <h3>Smartwatch Series 5</h3>
+        <button>View Product</button>
+      </div>
+    </div>
+    <div class="product-card" onclick="window.location.href='product-details.html'">
+      <img src="images/product3.jpg" alt="Gaming Mouse">
+      <div class="product-info">
+        <h3>Gaming Mouse X</h3>
+        <button>View Product</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-section">
+      <h4>About DarkCart</h4>
+      <p>We are a next-gen e-commerce platform focused on delivering premium electronics with speed and style.</p>
+    </div>
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Shop</a></li>
+        <li><a href="cart.html">Your Cart</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Contact Us</h4>
+      <ul>
+        <li>Email: support@darkcart.com</li>
+        <li>Phone: +267 123 4567</li>
+        <li>WhatsApp: +267 765 4321</li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 DarkCart. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
