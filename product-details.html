@@ -174,7 +174,7 @@
 
 <script>
   function addToCart(productName, productPrice) {
-    // Store the cart items in the local storage
+    // Store the cart items in localStorage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     let product = {
       name: productName,
@@ -190,7 +190,7 @@
       cart.push(product);
     }
 
-    // Save the updated cart to local storage
+    // Save the updated cart to localStorage
     localStorage.setItem('cart', JSON.stringify(cart));
 
     // Display the confirmation message
@@ -204,3 +204,4 @@
 
 </body>
 </html>
+
