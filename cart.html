@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DarkCart - Cart</title>
+  <title>DarkCart - Your Cart</title>
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
@@ -23,9 +23,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
     }
 
     header h1 {
@@ -37,7 +34,7 @@
       text-decoration: none;
       margin-left: 20px;
       font-weight: bold;
-      transition: color 0.3s ease;
+      transition: color 0.3s;
     }
 
     nav a:hover {
@@ -45,56 +42,73 @@
     }
 
     .cart-container {
-      padding: 60px 40px;
-      max-width: 1000px;
-      margin: auto;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
-    h2 {
-      font-size: 36px;
-      margin-bottom: 30px;
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .cart-item img {
+      width: 80px;
+      height: 80px;
+      border-radius: 5px;
+    }
+
+    .cart-item .item-info {
+      flex-grow: 1;
+      padding-left: 20px;
+    }
+
+    .cart-item .item-info h3 {
+      font-size: 18px;
+      color: #ffffff;
+    }
+
+    .cart-item .item-info .price {
+      font-size: 16px;
       color: #00bcd4;
-      text-align: center;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 30px;
+    .cart-item button {
+      background-color: #ff6347;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s;
     }
 
-    table th, table td {
-      padding: 15px;
-      text-align: center;
-      border-bottom: 1px solid #333;
+    .cart-item button:hover {
+      background-color: #e53e32;
     }
 
-    table th {
-      background-color: #1f1f1f;
-    }
-
-    table tbody tr:hover {
-      background-color: #1b1b1b;
-    }
-
-    .cart-summary {
-      text-align: right;
-      font-size: 20px;
-      font-weight: bold;
+    .total-container {
       margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 20px;
     }
 
     .checkout-btn {
-      display: inline-block;
       background-color: #00bcd4;
-      color: #000;
+      color: white;
       padding: 12px 25px;
-      font-size: 16px;
+      font-size: 18px;
       border: none;
-      border-radius: 30px;
+      border-radius: 25px;
       cursor: pointer;
-      transition: background 0.3s ease;
-      margin-top: 20px;
+      transition: background-color 0.3s ease;
     }
 
     .checkout-btn:hover {
@@ -104,127 +118,86 @@
     footer {
       background-color: #1a1a1a;
       padding: 40px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      color: #bbb;
-    }
-
-    .footer-section {
-      flex: 1;
-      min-width: 200px;
-      margin-bottom: 20px;
-    }
-
-    .footer-section h4 {
-      margin-bottom: 10px;
-      color: #00bcd4;
-    }
-
-    .footer-section ul {
-      list-style: none;
-    }
-
-    .footer-section ul li {
-      margin-bottom: 8px;
-    }
-
-    .footer-section ul li a {
-      color: #bbb;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .footer-section ul li a:hover {
-      color: #ffffff;
-    }
-
-    .footer-bottom {
       text-align: center;
-      padding: 20px;
-      border-top: 1px solid #333;
-      font-size: 14px;
-      color: #777;
-    }
-
-    @media screen and (max-width: 768px) {
-      table th, table td {
-        padding: 10px;
-      }
+      color: #bbb;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>DarkCart</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="cart.html">Cart</a>
-      <a href="feedback.html">Feedback</a>
-    </nav>
-  </header>
+<header>
+  <h1>DarkCart</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="cart.html">Cart</a>
+    <a href="feedback.html">Feedback</a>
+  </nav>
+</header>
 
-  <div class="cart-container">
-    <h2>Your Shopping Cart</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Product</th>
-          <th>Qty</th>
-          <th>Price</th>
-          <th>Subtotal</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Wireless Headphones</td>
-          <td>1</td>
-          <td>$129.99</td>
-          <td>$129.99</td>
-        </tr>
-        <tr>
-          <td>Smartwatch Series 5</td>
-          <td>1</td>
-          <td>$199.99</td>
-          <td>$199.99</td>
-        </tr>
-      </tbody>
-    </table>
+<div class="cart-container">
+  <h2>Your Cart</h2>
 
-    <div class="cart-summary">
-      Total: $329.98
-    </div>
-    <button class="checkout-btn">Proceed to Checkout</button>
+  <div id="cart-items">
+    <!-- Cart items will be dynamically added here -->
   </div>
 
-  <footer>
-    <div class="footer-section">
-      <h4>About DarkCart</h4>
-      <p>Your tech haven for premium gadgets and accessories at unbeatable prices.</p>
-    </div>
-    <div class="footer-section">
-      <h4>Quick Links</h4>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="products.html">Shop</a></li>
-        <li><a href="cart.html">Cart</a></li>
-        <li><a href="feedback.html">Feedback</a></li>
-      </ul>
-    </div>
-    <div class="footer-section">
-      <h4>Support</h4>
-      <ul>
-        <li>Email: support@darkcart.com</li>
-        <li>Phone: +267 123 4567</li>
-        <li>Mon–Fri: 9AM–5PM</li>
-      </ul>
-    </div>
-    <div class="footer-bottom">
-      &copy; 2025 DarkCart. All rights reserved.
-    </div>
-  </footer>
+  <div class="total-container">
+    <span>Total:</span>
+    <span id="total-price">$0.00</span>
+  </div>
+
+  <button class="checkout-btn">Proceed to Checkout</button>
+</div>
+
+<footer>
+  &copy; 2025 DarkCart. All rights reserved.
+</footer>
+
+<script>
+  // Retrieve cart data from localStorage
+  function loadCart() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let cartContainer = document.getElementById('cart-items');
+    let totalPrice = 0;
+    
+    cartContainer.innerHTML = ''; // Clear any previous items
+
+    // Loop through cart items and display them
+    cart.forEach((item, index) => {
+      totalPrice += item.price * item.quantity;
+
+      let cartItem = document.createElement('div');
+      cartItem.classList.add('cart-item');
+      
+      cartItem.innerHTML = `
+        <img src="https://via.placeholder.com/80?text=${item.name}" alt="${item.name}">
+        <div class="item-info">
+          <h3>${item.name}</h3>
+          <p class="price">$${item.price} x ${item.quantity}</p>
+        </div>
+        <button onclick="removeFromCart(${index})">Remove</button>
+      `;
+      
+      cartContainer.appendChild(cartItem);
+    });
+
+    // Update total price
+    document.getElementById('total-price').textContent = `$${totalPrice.toFixed(2)}`;
+  }
+
+  // Remove item from cart
+  function removeFromCart(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index, 1); // Remove item at the given index
+    localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart
+    loadCart(); // Reload the cart display
+  }
+
+  // Load the cart when the page loads
+  window.onload = loadCart;
+</script>
 
 </body>
 </html>
