@@ -94,6 +94,16 @@
       background-color: #03a9f4;
     }
 
+    #message {
+      display: none;
+      background-color: #00bcd4;
+      color: #fff;
+      padding: 10px;
+      margin-top: 20px;
+      border-radius: 5px;
+      font-size: 18px;
+    }
+
     footer {
       background-color: #1a1a1a;
       padding: 40px;
@@ -124,7 +134,7 @@
     <h2>Reusable Water Bottle</h2>
     <p>Stay hydrated sustainably with this eco-friendly, reusable water bottle. Made from high-quality stainless steel, it's perfect for both hot and cold drinks. The stylish design will keep you motivated to drink more water throughout the day.</p>
     <p class="price">$24.99</p>
-    <button>Add to Cart</button>
+    <button onclick="addToCart('Reusable Water Bottle', 24.99)">Add to Cart</button>
   </div>
 </div>
 
@@ -137,7 +147,7 @@
     <h2>Smart Speaker</h2>
     <p>Control your home with just your voice! This smart speaker is packed with powerful sound and connects to your smart devices. Perfect for music lovers, home automation, and hands-free convenience.</p>
     <p class="price">$49.99</p>
-    <button>Add to Cart</button>
+    <button onclick="addToCart('Smart Speaker', 49.99)">Add to Cart</button>
   </div>
 </div>
 
@@ -150,41 +160,47 @@
     <h2>Wireless Earbuds</h2>
     <p>Experience true wireless freedom with these ergonomic earbuds. Offering noise cancellation, a long battery life, and top-notch sound quality, these earbuds are perfect for on-the-go listening.</p>
     <p class="price">$79.99</p>
-    <button>Add to Cart</button>
+    <button onclick="addToCart('Wireless Earbuds', 79.99)">Add to Cart</button>
   </div>
 </div>
 
-<div class="product-details">
-  <!-- Product 4: Fitness Tracker -->
-  <div class="product-image">
-    <img src="https://via.placeholder.com/500x500?text=Fitness+Tracker" alt="Fitness Tracker">
-  </div>
-  <div class="product-info">
-    <h2>Fitness Tracker</h2>
-    <p>Track your workouts, steps, calories, and more with this sleek and lightweight fitness tracker. Stay motivated and monitor your progress in real-time.</p>
-    <p class="price">$59.99</p>
-    <button>Add to Cart</button>
-  </div>
-</div>
+<!-- Additional Products Here... -->
 
-<div class="product-details">
-  <!-- Product 5: Personalized Jewelry -->
-  <div class="product-image">
-    <img src="https://via.placeholder.com/500x500?text=Personalized+Jewelry" alt="Personalized Jewelry">
-  </div>
-  <div class="product-info">
-    <h2>Personalized Jewelry</h2>
-    <p>Customize your jewelry with initials, birthstones, or meaningful engravings. Perfect for gifts or personal keepsakes, this collection adds a personal touch to any occasion.</p>
-    <p class="price">$39.99</p>
-    <button>Add to Cart</button>
-  </div>
-</div>
-
-<!-- Repeat for other 15 products -->
+<div id="message">Item added to cart!</div>
 
 <footer>
   &copy; 2025 DarkCart. All rights reserved.
 </footer>
+
+<script>
+  function addToCart(productName, productPrice) {
+    // Store the cart items in the local storage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let product = {
+      name: productName,
+      price: productPrice,
+      quantity: 1
+    };
+
+    // Check if the product is already in the cart, if so, increase the quantity
+    const existingProductIndex = cart.findIndex(item => item.name === productName);
+    if (existingProductIndex !== -1) {
+      cart[existingProductIndex].quantity++;
+    } else {
+      cart.push(product);
+    }
+
+    // Save the updated cart to local storage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Display the confirmation message
+    const message = document.getElementById('message');
+    message.style.display = 'block';
+    setTimeout(() => {
+      message.style.display = 'none';
+    }, 2000);
+  }
+</script>
 
 </body>
 </html>
