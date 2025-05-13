@@ -9,10 +9,42 @@
       background: #121212;
       color: white;
       font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #1e1e1e;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      color: #00bcd4;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #00bcd4;
+    }
+
+    main {
       padding: 40px;
     }
 
-    h1 {
+    h1.page-title {
       color: #00bcd4;
     }
 
@@ -71,7 +103,6 @@
       background-color: #03a9f4;
     }
 
-    /* Popup notification styles */
     .popup {
       position: fixed;
       top: 50%;
@@ -85,28 +116,43 @@
       display: none;
       opacity: 0;
       transition: opacity 0.5s ease-in-out;
+      z-index: 9999;
     }
 
     .popup.show {
       display: block;
       opacity: 1;
     }
-
   </style>
 </head>
 <body>
 
-  <h1>Your Shopping Cart</h1>
-  <div id="cart"></div>
-  <div class="total" id="total"></div>
-  <button id="checkoutBtn" class="checkout-btn">Checkout</button>
+  <!-- Header with navigation -->
+  <header>
+    <h1>DarkCart</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="cart.html">Cart</a>
+      <a href="feedback.html">Feedback</a>
+    </nav>
+  </header>
 
+  <!-- Main content -->
+  <main>
+    <h1 class="page-title">Your Shopping Cart</h1>
+    <div id="cart"></div>
+    <div class="total" id="total"></div>
+    <button id="checkoutBtn" class="checkout-btn">Checkout</button>
+  </main>
+
+  <!-- Popup Message -->
   <div id="popupMessage" class="popup">
     Your products have been successfully purchased. Thank you for shopping with us!
   </div>
 
+  <!-- Script -->
   <script>
-    // Load cart items from localStorage
     function loadCart() {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
       const cartDiv = document.getElementById('cart');
@@ -122,7 +168,6 @@
 
       cart.forEach((item, index) => {
         total += item.price * item.quantity;
-
         cartDiv.innerHTML += `
           <div class="cart-item">
             <div>
@@ -137,7 +182,6 @@
       totalDiv.textContent = `Total: $${total.toFixed(2)}`;
     }
 
-    // Remove an item from the cart
     function removeItem(index) {
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
       cart.splice(index, 1);
@@ -145,7 +189,6 @@
       loadCart();
     }
 
-    // Checkout functionality
     document.getElementById('checkoutBtn').addEventListener('click', function() {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
       if (cart.length === 0) {
@@ -153,21 +196,20 @@
         return;
       }
 
-      // Display checkout success message
+      // Show popup message
       const popup = document.getElementById('popupMessage');
       popup.classList.add('show');
 
-      // Clear the cart after successful checkout
+      // Clear cart from localStorage
       localStorage.removeItem('cart');
 
-      // Reload the cart view
+      // Reload cart after 3 seconds
       setTimeout(function() {
         popup.classList.remove('show');
-        loadCart(); // Empty the cart and reload the page
-      }, 3000); // Wait 3 seconds to show the success message
+        loadCart();
+      }, 3000);
     });
 
-    // Initial cart loading
     loadCart();
   </script>
 
