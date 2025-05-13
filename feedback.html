@@ -149,6 +149,27 @@
       font-size: 14px;
       color: #777;
     }
+
+    /* Popup notification styles */
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #1a1a1a;
+      padding: 20px;
+      border-radius: 8px;
+      color: #00bcd4;
+      font-size: 18px;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .popup.show {
+      display: block;
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -165,7 +186,7 @@
 
   <div class="feedback-container">
     <h2>We Value Your Feedback</h2>
-    <form action="mailto:your-email@example.com" method="POST" enctype="text/plain">
+    <form id="feedbackForm">
       <label for="name">Full Name:</label>
       <input type="text" id="name" name="name" required />
 
@@ -177,6 +198,10 @@
 
       <button type="submit" class="submit-btn">Send Feedback</button>
     </form>
+  </div>
+
+  <div id="popupMessage" class="popup">
+    Your message has been successfully received. Thank you for your feedback!
   </div>
 
   <footer>
@@ -205,6 +230,24 @@
       &copy; 2025 DarkCart. All rights reserved.
     </div>
   </footer>
+
+  <script>
+    // Handle form submission
+    document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevents default form submission
+
+      // Show popup
+      const popup = document.getElementById('popupMessage');
+      popup.classList.add('show');
+
+      // Hide the popup after 3 seconds
+      setTimeout(function() {
+        popup.classList.remove('show');
+        // Optionally, reset the form here if you want to clear the inputs
+        document.getElementById('feedbackForm').reset();
+      }, 3000);
+    });
+  </script>
 
 </body>
 </html>
