@@ -3,14 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DarkCart - Products</title>
+  <title>DarkCart - Trending Products</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #121212;
-      color: white;
-      margin: 0;
+      color: #ffffff;
     }
+
     header {
       background-color: #1e1e1e;
       padding: 20px 40px;
@@ -18,54 +24,88 @@
       justify-content: space-between;
       align-items: center;
     }
+
     header h1 {
       color: #00bcd4;
     }
+
     nav a {
-      color: white;
+      color: #ffffff;
       text-decoration: none;
       margin-left: 20px;
       font-weight: bold;
+      transition: color 0.3s;
     }
+
     nav a:hover {
       color: #00bcd4;
     }
+
+    h2 {
+      text-align: center;
+      margin: 40px 0 20px;
+      color: #00bcd4;
+    }
+
     .product-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 20px;
       padding: 20px 40px;
     }
+
     .product {
       background-color: #1e1e1e;
       padding: 20px;
       border-radius: 10px;
       text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 0 5px #000;
     }
+
+    .product:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(0, 188, 212, 0.3);
+    }
+
     .product img {
-      width: 100%;
+      max-width: 100%;
       height: 180px;
       object-fit: cover;
-      border-radius: 10px;
+      border-radius: 8px;
     }
+
     .product h3 {
       margin: 10px 0;
+      color: #ffffff;
     }
+
     .product p {
       font-size: 14px;
       color: #ccc;
     }
+
     .product button {
       margin-top: 10px;
       padding: 10px 20px;
       background-color: #00bcd4;
-      color: black;
+      color: #000;
       border: none;
       border-radius: 20px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
+
     .product button:hover {
       background-color: #03a9f4;
+    }
+
+    footer {
+      background-color: #1a1a1a;
+      padding: 40px;
+      text-align: center;
+      color: #bbb;
+      margin-top: 40px;
     }
   </style>
 </head>
@@ -81,46 +121,164 @@
   </nav>
 </header>
 
-<h2 style="text-align: center; margin: 20px; color: #00bcd4;">🔥 Trending Products</h2>
+<h2>🔥 Trending Products</h2>
 
 <div class="product-grid" id="productGrid">
-  <!-- Products will be dynamically injected -->
+  <!-- Products will be generated here -->
 </div>
+
+<footer>
+  &copy; 2025 DarkCart. All rights reserved.
+</footer>
 
 <script>
   const products = [
-    { name: "Reusable Water Bottle", price: 10.99, img: "https://i.postimg.cc/TYFBGdkx/38ffefa1-e507-4080-a6cd-22d18e33c563.jpg" },
-    { name: "Smart Speaker", price: 29.99, img: "https://i.postimg.cc/4dfSwm36/Amazon-com-Belkin-Sound-Form-Elite-Hi-Fi-Smart.jpg" },
-    { name: "Wireless Earbuds", price: 49.99, img: "https://i.postimg.cc/B6mwz48d/Noise-cancelling-ear-buds-with-great-sound.jpg" },
-    { name: "Fitness Tracker", price: 35.00, img: "https://i.postimg.cc/vTDSFkfD/Enhance-your-wellness-with-Stylish-Fitness.jpg" }
-    // Add more products as needed
+    {
+      name: "Reusable Water Bottle",
+      price: 15.99,
+      image: "https://i.postimg.cc/TYFBGdkx/38ffefa1-e507-4080-a6cd-22d18e33c563.jpg",
+      description: "Stay hydrated sustainably with this eco-friendly bottle."
+    },
+    {
+      name: "Smart Speaker",
+      price: 89.99,
+      image: "https://i.postimg.cc/4dfSwm36/Amazon-com-Belkin-Sound-Form-Elite-Hi-Fi-Smart.jpg",
+      description: "Control your home with just your voice."
+    },
+    {
+      name: "Wireless Earbuds",
+      price: 39.99,
+      image: "https://i.postimg.cc/B6mwz48d/Noise-cancelling-ear-buds-with-great-sound.jpg",
+      description: "Experience true wireless freedom and crisp sound."
+    },
+    {
+      name: "Fitness Tracker",
+      price: 29.99,
+      image: "https://i.postimg.cc/vTDSFkfD/Enhance-your-wellness-with-Stylish-Fitness.jpg",
+      description: "Track your workouts and monitor your health."
+    },
+    {
+      name: "Personalized Jewelry",
+      price: 49.99,
+      image: "https://i.postimg.cc/mkqpbjyj/56962335-f630-4d40-8edf-93708ad1de02.jpg",
+      description: "Custom pieces for every occasion."
+    },
+    {
+      name: "Pet Grooming Kit",
+      price: 27.50,
+      image: "https://i.postimg.cc/L6Y0ydmb/5-in-1-Pet-Vacuum-Grooming-Kit-This-comprehensive.jpg",
+      description: "Keep your furry friends looking their best."
+    },
+    {
+      name: "Organic Skincare",
+      price: 34.00,
+      image: "https://i.postimg.cc/CxbrgjBC/6b9d03d9-faf5-4084-9889-e0ebdf24c421.jpg",
+      description: "Natural care for glowing skin."
+    },
+    {
+      name: "Portable Blender",
+      price: 42.99,
+      image: "https://i.postimg.cc/Xv82Z4gp/Ninja-BC151-BK-Blast-Portable-Blender-Cordless.jpg",
+      description: "Perfect smoothies wherever you go."
+    },
+    {
+      name: "Blue Light Glasses",
+      price: 18.75,
+      image: "https://i.postimg.cc/4d2B5PqG/In-its-every-component-the-Lightline-collection.jpg",
+      description: "Protect your eyes from screens."
+    },
+    {
+      name: "DIY Craft Kit",
+      price: 22.99,
+      image: "https://i.postimg.cc/T1ZQ8wTH/PRICES-MAY-VARY-Professional-Sewing-Kit-If.jpg",
+      description: "Unleash your creativity at home."
+    },
+    {
+      name: "Smart Watch",
+      price: 59.99,
+      image: "https://i.postimg.cc/g0NDz4Yh/GPS-44mm-Smart-Watch-w-Starlight-Aluminum-Case.jpg",
+      description: "Stay connected and track your fitness."
+    },
+    {
+      name: "Ergonomic Chair",
+      price: 129.00,
+      image: "https://i.postimg.cc/VsS3h0Rg/556e60cc-0298-4d8a-bebf-9d72692b8fbe.jpg",
+      description: "Support your back during long work hours."
+    },
+    {
+      name: "LED Strip Lights",
+      price: 16.99,
+      image: "https://i.postimg.cc/Cx0XdPVr/PRICES-MAY-VARY-RUBANS-LED-ULTRA-LONGUE-DE.jpg",
+      description: "Color your room with ambient lighting."
+    },
+    {
+      name: "Reusable Makeup Pads",
+      price: 9.99,
+      image: "https://i.postimg.cc/KjLp8Lpy/Effortless-Makeup-Removal-with-Reusable-Microfiber.jpg",
+      description: "Zero-waste cleansing solution."
+    },
+    {
+      name: "Facial Cleansing Brush",
+      price: 14.99,
+      image: "https://i.postimg.cc/T3TNTKrZ/Face-Scrubber-Facial-Cleansing-Brush-Exfoliator.jpg",
+      description: "Deep clean your pores with ease."
+    },
+    {
+      name: "Air Fryer",
+      price: 74.95,
+      image: "https://i.postimg.cc/GmSF6tzP/44165a73-5272-43b3-96ea-671dd86eb349.jpg",
+      description: "Enjoy crispy food with less oil."
+    },
+    {
+      name: "Minimalist Backpack",
+      price: 25.50,
+      image: "https://i.postimg.cc/d1GG7BFn/Bag-For-Love-Black-minimalist-medium-classic.jpg",
+      description: "Stylish and functional design."
+    },
+    {
+      name: "Sustainable Fashion",
+      price: 37.00,
+      image: "https://i.postimg.cc/XNcw4QQY/A-serene-and-modern-minimalist-setting-showcasing.jpg",
+      description: "Wear with purpose and style."
+    },
+    {
+      name: "Noise-Canceling Headphones",
+      price: 99.99,
+      image: "https://i.postimg.cc/MK9VjXkk/Advanced-noise-cancellation-The-Skullcandy-Hesh.jpg",
+      description: "Silence the world, hear only clarity."
+    },
+    {
+      name: "Smartphone Gimbal",
+      price: 89.00,
+      image: "https://i.postimg.cc/T3hmjGGK/6cedf558-aab0-4e80-afbb-9b34906651a9.jpg",
+      description: "Capture smooth cinematic videos."
+    }
   ];
 
   const grid = document.getElementById('productGrid');
 
-  products.forEach((product, index) => {
+  products.forEach(product => {
     const div = document.createElement('div');
     div.className = 'product';
     div.innerHTML = `
-      <img src="${product.img}" alt="${product.name}">
+      <img src="${product.image}" alt="${product.name}">
       <h3>${product.name}</h3>
-      <p>$${product.price.toFixed(2)}</p>
-      <button onclick="addToCart(${index})">Add to Cart</button>
+      <p>${product.description}</p>
+      <p><strong>$${product.price.toFixed(2)}</strong></p>
+      <button onclick='addToCart(${JSON.stringify(product)})'>Add to Cart</button>
     `;
     grid.appendChild(div);
   });
 
-  function addToCart(index) {
-    const product = products[index];
+  function addToCart(product) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    const existingItem = cart.find(item => item.name === product.name);
-    if (existingItem) {
-      existingItem.quantity += 1;
+    const index = cart.findIndex(item => item.name === product.name);
+    if (index > -1) {
+      cart[index].quantity += 1;
     } else {
-      cart.push({ ...product, quantity: 1 });
+      product.quantity = 1;
+      cart.push(product);
     }
-
     localStorage.setItem('cart', JSON.stringify(cart));
     alert(`${product.name} added to cart!`);
   }
@@ -128,3 +286,4 @@
 
 </body>
 </html>
+
