@@ -107,6 +107,18 @@
       color: #bbb;
       margin-top: 40px;
     }
+
+    #message {
+      display: none;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #00bcd4;
+      color: black;
+      padding: 10px 20px;
+      border-radius: 5px;
+      z-index: 1000;
+    }
   </style>
 </head>
 <body>
@@ -121,155 +133,77 @@
   </nav>
 </header>
 
+<div id="message">Item added to cart!</div>
+
 <h2>🔥 Trending Products</h2>
 
-<div class="product-grid">
-  <!-- Repeat block for each product -->
-  <div class="product">
-    <img src="https://i.postimg.cc/TYFBGdkx/38ffefa1-e507-4080-a6cd-22d18e33c563.jpg" alt="Reusable Water Bottle">
-    <h3>Reusable Water Bottle</h3>
-    <p>Stay hydrated sustainably with this eco-friendly bottle.</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://i.postimg.cc/4dfSwm36/Amazon-com-Belkin-Sound-Form-Elite-Hi-Fi-Smart.jpg" alt="Smart Speaker">
-    <h3>Smart Speaker</h3>
-    <p>Control your home with just your voice.</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://i.postimg.cc/B6mwz48d/Noise-cancelling-ear-buds-with-great-sound.jpg" alt="Wireless Earbuds">
-    <h3>Wireless Earbuds</h3>
-    <p>Experience true wireless freedom and crisp sound.</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://i.postimg.cc/vTDSFkfD/Enhance-your-wellness-with-Stylish-Fitness.jpg" alt="Fitness Tracker">
-    <h3>Fitness Tracker</h3>
-    <p>Track your workouts and monitor your health.</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://i.postimg.cc/mkqpbjyj/56962335-f630-4d40-8edf-93708ad1de02.jpg" alt="Personalized Jewelry">
-    <h3>Personalized Jewelry</h3>
-    <p>Custom pieces for every occasion.</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://i.postimg.cc/L6Y0ydmb/5-in-1-Pet-Vacuum-Grooming-Kit-This-comprehensive.jpg" alt="Pet Grooming Kit">
-    <h3>Pet Grooming Kit</h3>
-    <p>Keep your furry friends looking their best.</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://i.postimg.cc/CxbrgjBC/6b9d03d9-faf5-4084-9889-e0ebdf24c421.jpg" alt="Organic Skincare">
-    <h3>Organic Skincare</h3>
-    <p>Natural care for glowing skin.</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://i.postimg.cc/Xv82Z4gp/Ninja-BC151-BK-Blast-Portable-Blender-Cordless.jpg" alt="Portable Blender">
-    <h3>Portable Blender</h3>
-    <p>Perfect smoothies wherever you go.</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://i.postimg.cc/4d2B5PqG/In-its-every-component-the-Lightline-collection.jpg" alt="Blue Light Glasses">
-    <h3>Blue Light Glasses</h3>
-    <p>Protect your eyes from screens.</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://i.postimg.cc/T1ZQ8wTH/PRICES-MAY-VARY-Professional-Sewing-Kit-If.jpg" alt="DIY Craft Kit">
-    <h3>DIY Craft Kit</h3>
-    <p>Unleash your creativity at home.</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://i.postimg.cc/g0NDz4Yh/GPS-44mm-Smart-Watch-w-Starlight-Aluminum-Case.jpg" alt="Smart Watch">
-    <h3>Smart Watch</h3>
-    <p>Stay connected and track your fitness.</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://i.postimg.cc/VsS3h0Rg/556e60cc-0298-4d8a-bebf-9d72692b8fbe.jpg" alt="Ergonomic Chair">
-    <h3>Ergonomic Chair</h3>
-    <p>Support your back during long work hours.</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://i.postimg.cc/Cx0XdPVr/PRICES-MAY-VARY-RUBANS-LED-ULTRA-LONGUE-DE.jpg" alt="LED Strip Lights">
-    <h3>LED Strip Lights</h3>
-    <p>Color your room with ambient lighting.</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://i.postimg.cc/KjLp8Lpy/Effortless-Makeup-Removal-with-Reusable-Microfiber.jpg" alt="Makeup Remover Pads">
-    <h3>Reusable Makeup Pads</h3>
-    <p>Zero-waste cleansing solution.</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://i.postimg.cc/T3TNTKrZ/Face-Scrubber-Facial-Cleansing-Brush-Exfoliator.jpg" alt="Facial Cleansing Brush">
-    <h3>Facial Cleansing Brush</h3>
-    <p>Deep clean your pores with ease.</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://i.postimg.cc/GmSF6tzP/44165a73-5272-43b3-96ea-671dd86eb349.jpg" alt="Air Fryer">
-    <h3>Air Fryer</h3>
-    <p>Enjoy crispy food with less oil.</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://i.postimg.cc/d1GG7BFn/Bag-For-Love-Black-minimalist-medium-classic.jpg" alt="Minimalist Backpack">
-    <h3>Minimalist Backpack</h3>
-    <p>Stylish and functional design.</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://i.postimg.cc/XNcw4QQY/A-serene-and-modern-minimalist-setting-showcasing.jpg" alt="Sustainable Fashion">
-    <h3>Sustainable Fashion</h3>
-    <p>Wear with purpose and style.</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://i.postimg.cc/MK9VjXkk/Advanced-noise-cancellation-The-Skullcandy-Hesh.jpg" alt="Noise-Canceling Headphones">
-    <h3>Noise-Canceling Headphones</h3>
-    <p>Silence the world, hear only clarity.</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://i.postimg.cc/T3hmjGGK/6cedf558-aab0-4e80-afbb-9b34906651a9.jpg" alt="Smartphone Gimbal">
-    <h3>Smartphone Gimbal</h3>
-    <p>Capture smooth cinematic videos.</p>
-    <button>Add to Cart</button>
-  </div>
+<div class="product-grid" id="product-grid">
+  <!-- Product cards will be rendered with JavaScript -->
 </div>
 
 <footer>
   &copy; 2025 DarkCart. All rights reserved.
 </footer>
 
+<script>
+  const products = [
+    { name: "Reusable Water Bottle", description: "Stay hydrated sustainably with this eco-friendly bottle.", img: "https://i.postimg.cc/TYFBGdkx/38ffefa1-e507-4080-a6cd-22d18e33c563.jpg", price: 24.99 },
+    { name: "Smart Speaker", description: "Control your home with just your voice.", img: "https://i.postimg.cc/4dfSwm36/Amazon-com-Belkin-Sound-Form-Elite-Hi-Fi-Smart.jpg", price: 49.99 },
+    { name: "Wireless Earbuds", description: "Experience true wireless freedom and crisp sound.", img: "https://i.postimg.cc/B6mwz48d/Noise-cancelling-ear-buds-with-great-sound.jpg", price: 79.99 },
+    { name: "Fitness Tracker", description: "Track your workouts and monitor your health.", img: "https://i.postimg.cc/vTDSFkfD/Enhance-your-wellness-with-Stylish-Fitness.jpg", price: 59.99 },
+    { name: "Personalized Jewelry", description: "Custom pieces for every occasion.", img: "https://i.postimg.cc/mkqpbjyj/56962335-f630-4d40-8edf-93708ad1de02.jpg", price: 39.99 },
+    { name: "Pet Grooming Kit", description: "Keep your furry friends looking their best.", img: "https://i.postimg.cc/L6Y0ydmb/5-in-1-Pet-Vacuum-Grooming-Kit-This-comprehensive.jpg", price: 65.99 },
+    { name: "Organic Skincare", description: "Natural care for glowing skin.", img: "https://i.postimg.cc/CxbrgjBC/6b9d03d9-faf5-4084-9889-e0ebdf24c421.jpg", price: 29.99 },
+    { name: "Portable Blender", description: "Perfect smoothies wherever you go.", img: "https://i.postimg.cc/Xv82Z4gp/Ninja-BC151-BK-Blast-Portable-Blender-Cordless.jpg", price: 34.99 },
+    { name: "Blue Light Glasses", description: "Protect your eyes from screens.", img: "https://i.postimg.cc/4d2B5PqG/In-its-every-component-the-Lightline-collection.jpg", price: 19.99 },
+    { name: "DIY Craft Kit", description: "Unleash your creativity at home.", img: "https://i.postimg.cc/T1ZQ8wTH/PRICES-MAY-VARY-Professional-Sewing-Kit-If.jpg", price: 22.99 },
+    { name: "Smart Watch", description: "Stay connected and track your fitness.", img: "https://i.postimg.cc/g0NDz4Yh/GPS-44mm-Smart-Watch-w-Starlight-Aluminum-Case.jpg", price: 129.99 },
+    { name: "Ergonomic Chair", description: "Support your back during long work hours.", img: "https://i.postimg.cc/VsS3h0Rg/556e60cc-0298-4d8a-bebf-9d72692b8fbe.jpg", price: 189.99 },
+    { name: "LED Strip Lights", description: "Color your room with ambient lighting.", img: "https://i.postimg.cc/Cx0XdPVr/PRICES-MAY-VARY-RUBANS-LED-ULTRA-LONGUE-DE.jpg", price: 17.99 },
+    { name: "Reusable Makeup Pads", description: "Zero-waste cleansing solution.", img: "https://i.postimg.cc/KjLp8Lpy/Effortless-Makeup-Removal-with-Reusable-Microfiber.jpg", price: 12.99 },
+    { name: "Facial Cleansing Brush", description: "Deep clean your pores with ease.", img: "https://i.postimg.cc/T3TNTKrZ/Face-Scrubber-Facial-Cleansing-Brush-Exfoliator.jpg", price: 18.99 },
+    { name: "Air Fryer", description: "Enjoy crispy food with less oil.", img: "https://i.postimg.cc/GmSF6tzP/44165a73-5272-43b3-96ea-671dd86eb349.jpg", price: 89.99 },
+    { name: "Minimalist Backpack", description: "Stylish and functional design.", img: "https://i.postimg.cc/d1GG7BFn/Bag-For-Love-Black-minimalist-medium-classic.jpg", price: 39.99 },
+    { name: "Sustainable Fashion", description: "Wear with purpose and style.", img: "https://i.postimg.cc/XNcw4QQY/A-serene-and-modern-minimalist-setting-showcasing.jpg", price: 44.99 },
+    { name: "Noise-Canceling Headphones", description: "Silence the world, hear only clarity.", img: "https://i.postimg.cc/MK9VjXkk/Advanced-noise-cancellation-The-Skullcandy-Hesh.jpg", price: 109.99 },
+    { name: "Smartphone Gimbal", description: "Capture smooth cinematic videos.", img: "https://i.postimg.cc/T3hmjGGK/6cedf558-aab0-4e80-afbb-9b34906651a9.jpg", price: 79.99 }
+  ];
+
+  const container = document.getElementById("product-grid");
+
+  products.forEach(product => {
+    const div = document.createElement("div");
+    div.classList.add("product");
+    div.innerHTML = `
+      <img src="${product.img}" alt="${product.name}">
+      <h3>${product.name}</h3>
+      <p>${product.description}</p>
+      <p style="color:#00bcd4; font-weight:bold;">$${product.price.toFixed(2)}</p>
+      <button onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
+    `;
+    container.appendChild(div);
+  });
+
+  function addToCart(name, price) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const index = cart.findIndex(item => item.name === name);
+    if (index !== -1) {
+      cart[index].quantity += 1;
+    } else {
+      cart.push({ name, price, quantity: 1 });
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    showMessage();
+  }
+
+  function showMessage() {
+    const msg = document.getElementById('message');
+    msg.style.display = 'block';
+    setTimeout(() => {
+      msg.style.display = 'none';
+    }, 2000);
+  }
+</script>
+
 </body>
 </html>
-
