@@ -9,73 +9,113 @@
       background: #121212;
       color: white;
       font-family: 'Segoe UI', sans-serif;
-      margin: 0;
+      padding: 40px;
     }
-    header {
-      background-color: #1e1e1e;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header h1 {
-      color: #00bcd4;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: bold;
-    }
-    nav a:hover {
-      color: #00bcd4;
-    }
+
     h1 {
       color: #00bcd4;
-      padding: 20px 40px;
     }
+
+    nav {
+      margin-bottom: 30px;
+    }
+
+    nav a {
+      color: #00bcd4;
+      text-decoration: none;
+      margin-right: 20px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
     .cart-item {
       background-color: #1e1e1e;
       padding: 20px;
-      margin: 20px 40px;
+      margin-bottom: 20px;
       border-radius: 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
+
+    .cart-item h2 {
+      margin: 0;
+    }
+
+    .cart-item p {
+      margin: 5px 0;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .quantity-controls button {
+      background-color: #00bcd4;
+      color: black;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .quantity-controls button:hover {
+      background-color: #03a9f4;
+    }
+
     .remove-btn {
       background-color: #ff5252;
       border: none;
       color: white;
-      padding: 10px;
+      padding: 10px 15px;
       border-radius: 5px;
       cursor: pointer;
     }
+
     .remove-btn:hover {
       background-color: #ff1744;
     }
+
+    .clear-btn {
+      background-color: #757575;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .clear-btn:hover {
+      background-color: #9e9e9e;
+    }
+
     .total {
       font-size: 22px;
       font-weight: bold;
-      margin: 20px 40px;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>DarkCart</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="products.html">Products</a>
-    <a href="cart.html">Cart</a>
-    <a href="feedback.html">Feedback</a>
-  </nav>
-</header>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="products.html">Products</a>
+  <a href="cart.html">Cart</a>
+  <a href="feedback.html">Feedback</a>
+</nav>
 
 <h1>Your Shopping Cart</h1>
 <div id="cart"></div>
 <div class="total" id="total"></div>
+<button class="clear-btn" onclick="clearCart()">Clear Cart</button>
 
 <script>
   function loadCart() {
@@ -86,18 +126,23 @@
     let total = 0;
 
     if (cart.length === 0) {
-      cartDiv.innerHTML = '<p style="margin-left:40px;">Your cart is empty.</p>';
+      cartDiv.innerHTML = '<p>Your cart is empty.</p>';
       totalDiv.innerHTML = '';
       return;
     }
 
     cart.forEach((item, index) => {
       total += item.price * item.quantity;
+
       cartDiv.innerHTML += `
         <div class="cart-item">
           <div>
-            <h3>${item.name}</h3>
-            <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
+            <h2>${item.name}</h2>
+            <p>$${item.price.toFixed(2)} × ${item.quantity}</p>
+            <div class="quantity-controls">
+              <button onclick="decreaseQuantity(${index})">−</button>
+              <button onclick="increaseQuantity(${index})">+</button>
+            </div>
           </div>
           <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
         </div>
@@ -111,6 +156,29 @@
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart.splice(index, 1);
     localStorage.setItem('cart', JSON.stringify(cart));
+    loadCart();
+  }
+
+  function increaseQuantity(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart[index].quantity += 1;
+    localStorage.setItem('cart', JSON.stringify(cart));
+    loadCart();
+  }
+
+  function decreaseQuantity(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart[index].quantity > 1) {
+      cart[index].quantity -= 1;
+    } else {
+      cart.splice(index, 1); // Remove item if quantity drops to 0
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    loadCart();
+  }
+
+  function clearCart() {
+    localStorage.removeItem('cart');
     loadCart();
   }
 
