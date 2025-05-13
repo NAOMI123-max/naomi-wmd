@@ -12,9 +12,9 @@
     }
 
     body {
-      background: #121212;
-      color: white;
       font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: white;
     }
 
     header {
@@ -128,11 +128,57 @@
       display: block;
       opacity: 1;
     }
+
+    footer {
+      background-color: #1a1a1a;
+      padding: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      color: #bbb;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 200px;
+      margin-bottom: 20px;
+    }
+
+    .footer-section h4 {
+      margin-bottom: 10px;
+      color: #00bcd4;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 8px;
+    }
+
+    .footer-section ul li a {
+      color: #bbb;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section ul li a:hover {
+      color: #ffffff;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid #333;
+      font-size: 14px;
+      color: #777;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Header with navigation -->
+  <!-- Navigation Header -->
   <header>
     <h1>DarkCart</h1>
     <nav>
@@ -143,7 +189,7 @@
     </nav>
   </header>
 
-  <!-- Main content -->
+  <!-- Main Content -->
   <main>
     <h1 class="page-title">Your Shopping Cart</h1>
     <div id="cart"></div>
@@ -156,7 +202,35 @@
     Your products have been successfully purchased. Thank you for shopping with us!
   </div>
 
-  <!-- Script -->
+  <!-- Footer -->
+  <footer>
+    <div class="footer-section">
+      <h4>About DarkCart</h4>
+      <p>Built with passion and a dark modern feel to give you the best online shopping experience.</p>
+    </div>
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Shop</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Help & Support</h4>
+      <ul>
+        <li>Email: support@darkcart.com</li>
+        <li>Phone: +267 123 4567</li>
+        <li>Mon–Fri: 9AM–5PM</li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 DarkCart. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
   <script>
     function loadCart() {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -201,14 +275,11 @@
         return;
       }
 
-      // Show popup message
       const popup = document.getElementById('popupMessage');
       popup.classList.add('show');
 
-      // Clear cart
       localStorage.removeItem('cart');
 
-      // Hide popup and reload cart
       setTimeout(function() {
         popup.classList.remove('show');
         loadCart();
