@@ -5,18 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Cart - DarkCart</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
       background: #121212;
       color: white;
       font-family: 'Segoe UI', sans-serif;
+      margin: 0;
     }
-
     header {
       background-color: #1e1e1e;
       padding: 20px 40px;
@@ -24,80 +18,31 @@
       justify-content: space-between;
       align-items: center;
     }
-
     header h1 {
       color: #00bcd4;
     }
-
     nav a {
-      color: #ffffff;
+      color: white;
       text-decoration: none;
       margin-left: 20px;
       font-weight: bold;
-      transition: color 0.3s;
     }
-
     nav a:hover {
       color: #00bcd4;
     }
-
-    main {
-      padding: 40px;
-    }
-
-    h2 {
-      margin-bottom: 30px;
+    h1 {
       color: #00bcd4;
+      padding: 20px 40px;
     }
-
     .cart-item {
       background-color: #1e1e1e;
       padding: 20px;
-      margin-bottom: 20px;
+      margin: 20px 40px;
       border-radius: 10px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 20px;
-      box-shadow: 0 0 5px #000;
-    }
-
-    .cart-item img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    .cart-details {
-      flex: 1;
-    }
-
-    .cart-details h3 {
-      margin: 0 0 5px;
-    }
-
-    .cart-details p {
-      color: #ccc;
-      margin: 0;
-    }
-
-    .quantity-control {
-      display: flex;
       align-items: center;
-      gap: 10px;
     }
-
-    .quantity-btn {
-      padding: 5px 10px;
-      font-size: 16px;
-      background-color: #00bcd4;
-      color: #000;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
     .remove-btn {
       background-color: #ff5252;
       border: none;
@@ -106,25 +51,13 @@
       border-radius: 5px;
       cursor: pointer;
     }
-
     .remove-btn:hover {
       background-color: #ff1744;
     }
-
     .total {
       font-size: 22px;
       font-weight: bold;
-      margin-top: 40px;
-      text-align: right;
-      color: #00bcd4;
-    }
-
-    footer {
-      background-color: #1a1a1a;
-      padding: 30px;
-      text-align: center;
-      color: #bbb;
-      margin-top: 40px;
+      margin: 20px 40px;
     }
   </style>
 </head>
@@ -140,15 +73,9 @@
   </nav>
 </header>
 
-<main>
-  <h2>Your Shopping Cart</h2>
-  <div id="cart"></div>
-  <div class="total" id="total"></div>
-</main>
-
-<footer>
-  &copy; 2025 DarkCart. All rights reserved.
-</footer>
+<h1>Your Shopping Cart</h1>
+<div id="cart"></div>
+<div class="total" id="total"></div>
 
 <script>
   function loadCart() {
@@ -159,25 +86,18 @@
     let total = 0;
 
     if (cart.length === 0) {
-      cartDiv.innerHTML = '<p>Your cart is empty.</p>';
+      cartDiv.innerHTML = '<p style="margin-left:40px;">Your cart is empty.</p>';
       totalDiv.innerHTML = '';
       return;
     }
 
     cart.forEach((item, index) => {
       total += item.price * item.quantity;
-
       cartDiv.innerHTML += `
         <div class="cart-item">
-          <img src="${item.image}" alt="${item.name}">
-          <div class="cart-details">
+          <div>
             <h3>${item.name}</h3>
             <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
-            <div class="quantity-control">
-              <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
-              <span>${item.quantity}</span>
-              <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
-            </div>
           </div>
           <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
         </div>
@@ -190,14 +110,6 @@
   function removeItem(index) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    loadCart();
-  }
-
-  function updateQuantity(index, change) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart[index].quantity += change;
-    if (cart[index].quantity < 1) cart[index].quantity = 1;
     localStorage.setItem('cart', JSON.stringify(cart));
     loadCart();
   }
