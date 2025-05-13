@@ -3,200 +3,110 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DarkCart - Your Cart</title>
+  <title>DarkCart - Cart</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: 'Segoe UI', sans-serif;
       background-color: #121212;
       color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 40px;
     }
 
-    header {
+    h1 {
+      color: #00bcd4;
+    }
+
+    .cart-item {
       background-color: #1e1e1e;
-      padding: 20px 40px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    header h1 {
-      color: #00bcd4;
-    }
-
-    nav a {
-      color: #ffffff;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: #00bcd4;
-    }
-
-    .cart-container {
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px;
-      background-color: #1a1a1a;
-      border-radius: 10px;
+    .cart-item h2 {
       margin-bottom: 10px;
     }
 
-    .cart-item img {
-      width: 80px;
-      height: 80px;
-      border-radius: 5px;
-    }
-
-    .cart-item .item-info {
-      flex-grow: 1;
-      padding-left: 20px;
-    }
-
-    .cart-item .item-info h3 {
-      font-size: 18px;
-      color: #ffffff;
-    }
-
-    .cart-item .item-info .price {
-      font-size: 16px;
-      color: #00bcd4;
-    }
-
-    .cart-item button {
+    .remove-btn {
       background-color: #ff6347;
       color: white;
       border: none;
-      padding: 8px 16px;
-      font-size: 16px;
-      cursor: pointer;
+      padding: 10px;
       border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-
-    .cart-item button:hover {
-      background-color: #e53e32;
-    }
-
-    .total-container {
-      margin-top: 20px;
-      display: flex;
-      justify-content: space-between;
-      font-size: 20px;
-    }
-
-    .checkout-btn {
-      background-color: #00bcd4;
-      color: white;
-      padding: 12px 25px;
-      font-size: 18px;
-      border: none;
-      border-radius: 25px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
     }
 
-    .checkout-btn:hover {
-      background-color: #03a9f4;
+    .remove-btn:hover {
+      background-color: #e53935;
     }
 
-    footer {
-      background-color: #1a1a1a;
-      padding: 40px;
-      text-align: center;
-      color: #bbb;
-      margin-top: 40px;
+    .total {
+      font-size: 24px;
+      margin-top: 30px;
+      font-weight: bold;
+    }
+
+    .empty {
+      font-size: 20px;
+      color: #aaa;
+    }
+
+    a {
+      color: #00bcd4;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>DarkCart</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="products.html">Products</a>
-    <a href="cart.html">Cart</a>
-    <a href="feedback.html">Feedback</a>
-  </nav>
-</header>
+  <h1>Your Cart</h1>
+  <div id="cart-container"></div>
+  <div class="total" id="cart-total"></div>
 
-<div class="cart-container">
-  <h2>Your Cart</h2>
+  <script>
+    function loadCart() {
+      const cartContainer = document.getElementById('cart-container');
+      const cartTotal = document.getElementById('cart-total');
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-  <div id="cart-items">
-    <!-- Cart items will be dynamically added here -->
-  </div>
+      cartContainer.innerHTML = '';
+      let total = 0;
 
-  <div class="total-container">
-    <span>Total:</span>
-    <span id="total-price">$0.00</span>
-  </div>
+      if (cart.length === 0) {
+        cartContainer.innerHTML = '<p class="empty">Your cart is empty.</p>';
+        cartTotal.textContent = '';
+        return;
+      }
 
-  <button class="checkout-btn">Proceed to Checkout</button>
-</div>
+      cart.forEach((item, index) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+        itemDiv.innerHTML = `
+          <div>
+            <h2>${item.name}</h2>
+            <p>Price: $${item.price} x ${item.quantity}</p>
+          </div>
+          <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+        `;
+        cartContainer.appendChild(itemDiv);
+        total += item.price * item.quantity;
+      });
 
-<footer>
-  &copy; 2025 DarkCart. All rights reserved.
-</footer>
+      cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+    }
 
-<script>
-  function loadCart() {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let cartContainer = document.getElementById('cart-items');
-    let totalPrice = 0;
-    
-    cartContainer.innerHTML = ''; // Clear any previous items
+    function removeItem(index) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      loadCart();
+    }
 
-    // Loop through cart items and display them
-    cart.forEach((item, index) => {
-      totalPrice += item.price * item.quantity;
-
-      let cartItem = document.createElement('div');
-      cartItem.classList.add('cart-item');
-      
-      cartItem.innerHTML = `
-        <img src="https://via.placeholder.com/80?text=${item.name}" alt="${item.name}">
-        <div class="item-info">
-          <h3>${item.name}</h3>
-          <p class="price">$${item.price} x ${item.quantity}</p>
-        </div>
-        <button onclick="removeFromCart(${index})">Remove</button>
-      `;
-      
-      cartContainer.appendChild(cartItem);
-    });
-
-    // Update total price
-    document.getElementById('total-price').textContent = `$${totalPrice.toFixed(2)}`;
-  }
-
-  // Remove item from cart
-  function removeFromCart(index) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart.splice(index, 1); // Remove item at the given index
-    localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart
-    loadCart(); // Reload the cart display
-  }
-
-  // Load the cart when the page loads
-  window.onload = loadCart;
-</script>
-
+    // Initial load
+    loadCart();
+  </script>
 </body>
 </html>
